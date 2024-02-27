@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; 
+        }
+
+        main {
+            flex-grow: 1; 
+        }
+    </style>
+
+</head>
+<h2></h2>
+<script>
+    function sendWhatsAppMessage(){
+        var name = document.getElementById ('name').value;
+        var phoneNumber = document.getElementById('phoneNumber').value;
+        var message = document.getElementById('message').value;
+        var amount = document.getElementById('amount').value;
+        var message = encodeURIComponent("Hello, my name is " + name + ". My phone number is " + phoneNumber + ". My inquiry is" + message + ". Amount is" + amount + ".");
+        var whatsappURL = "https://wa.me/56890996/?text=" + message;
+        window.open(whatsappURL, '_blank');
+
+        document.getElementById('purchaseForm').addEventListener('Submit' , function(e) {
+            e.preventDefault();
+            var amount = parseFloat(document.getElementById('amount').value);
+            var coupons = 0;
+            var freeProduct = false;
+             if (amount > 240) {
+                coupons = 2;
+             }
+             coupons += Math.floor(coupons / 5);
+             if (coupons >5) {
+                freeProduct= true;
+             }
+             document.getElementById('result').innerHTML = 'Purchase amount: $' + amount.toFixed(2) +'<br>';
+             document.getElementById('result').innerHTML += 'Coupons earned:' + coupons + '<br>';
+
+             if (freeProduct) {
+                document.getElementById('result').innerHTML += 'Congradulations! You earned a free product!';
+             }
+        })
+    };
+    
+</script>
+<body style="background-color: #78b2dd; "> 
+    <header>
+        <h1>Find Us On Contact Info Below For More Details </h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="contact-info">
+            <h3>Contact Information</h3>
+            <p class="contact">Email: nthimoatang@gmail.com</p>
+            <p class="contact">Location: MASERU, QOALING Box 118</p>
+            <p class="contact">Phone: +266 56890996</p>
+            <h3>Social Media</h3>
+            <p class="contact"><a href="https://www.facebook.com/atang.nthimo" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a></p>
+            <p ><a href="https://wa.me/56890996" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></p>
+        </section>
+        <section id="contact-form">
+        <h3>Contact Us</h3>
+        <form action="#" method="POST">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="phoneNumber">Phone Number:</label>
+            <input type="text" id="phoneNumber" name="phoneNumber" required>
+            
+            <label for="amount">Purchase Amount:</label>
+            <input type="number" id="amount" name="amount" required>
+            
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea>
+
+            <label for="orderRequest">Place Order:</label>
+            <input type="text" id="orderRequest" name="orderRequest" required>
+
+            <input type="button" value="Submit" onclick="sendWhatsAppMessage()">
+            
+        </form>
+        <div id="result"></div>
+    </section>
+    </main>
+    <footer>
+       <p class="copyright">&copy; 2024 TEETH FIGTHER PRODUCTS</p>
+        <div class="social-media">
+            <p><a href="https://www.facebook.com/atang.nthimo" > Facebook</a></p>
+            <p><a href="https://wa.me/56890996" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></p>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
